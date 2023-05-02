@@ -1,0 +1,39 @@
+package com.example.demo.service;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.Product;
+import com.example.demo.entity.ProductDto;
+import com.example.demo.repository.ProductRepository;
+
+@Service
+public class ProductService {
+	@Autowired
+	private ProductRepository repo;
+	
+	private ModelMapper mapper;
+
+	public ProductService(ProductRepository repo, ModelMapper mapper) {
+		super();
+		this.repo = repo;
+		this.mapper = mapper;
+	}
+	
+	private ProductDto mapToDto(Product product) {
+		ProductDto Prod = mapper.map(product, ProductDto.class);
+		return Prod;
+	}
+	
+	private Product mapToEntity(ProductDto prod) {
+		Product Prod = mapper.map(prod, Product.class);
+		return Prod;
+	}
+	
+	public ProductDto sendProduct(ProductDto prod) {
+		Product prod = mapToEntity(prod);
+		
+	}
+
+}

@@ -1,0 +1,28 @@
+package com.example.demo.service;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.Inventory;
+import com.example.demo.repository.InventoryRepository;
+import com.example.demo.service.entity.InventoryDto;
+
+@Service
+public class InventoryService {
+
+	@Autowired
+	private InventoryRepository repo;
+	
+	private ModelMapper mapper;
+	
+	private InventoryDto mapToDto(Inventory inv) {
+		InventoryDto inventory = mapper.map(inv, InventoryDto.class);
+		return inventory;
+	}
+	
+	private Inventory mapToEntity(InventoryDto inv) {
+		Inventory inventory = mapper.map(inv, Inventory.class);
+		return inv;
+	}
+}

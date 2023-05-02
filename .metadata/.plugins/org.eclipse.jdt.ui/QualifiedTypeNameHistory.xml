@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.example.demo.entity.Product"/>
+    <fullyQualifiedTypeName name="com.example.demo.kafka.AppConstants"/>
+    <fullyQualifiedTypeName name="org.apache.kafka.clients.admin.NewTopic"/>
+    <fullyQualifiedTypeName name="org.springframework.kafka.config.TopicBuilder"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="com.example.demo.entity.Inventory"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+</qualifiedTypeNameHistroy>
