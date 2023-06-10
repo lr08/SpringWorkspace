@@ -1,13 +1,16 @@
 package com.example.demo.service;
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Product;
-import com.example.demo.entity.ProductDto;
+import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.kafka.AppConstants;
+import com.example.demo.payload.ProductDto;
 import com.example.demo.repository.ProductRepository;
 
 @Service
@@ -45,6 +48,11 @@ public class ProductService {
 		String inventoryInput = addedProduct.getId()+","+prod.getQuantity();
 		kafkaTemplate.send(AppConstants.TOPIC_NAME,inventoryInput);
 		return response;
+	}
+	
+	public ProductDto getProductById(Integer id) {
+		Product pro = repo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Product with given id not found"));
+		return mapToDto(pro);
 	}
 
 }

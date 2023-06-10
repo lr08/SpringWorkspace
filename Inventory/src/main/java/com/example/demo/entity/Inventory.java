@@ -15,19 +15,19 @@ public class Inventory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int inventoryId;
-	private int id;
+	private int productId;
 	private int quantity;
 	
-	public Inventory(int id, int quantity) {
+	public Inventory(int productId, int quantity) {
 		super();
-		this.id = id;
+		this.productId = productId;
 		this.quantity = quantity;
 	}
 
-	public Inventory(int inventoryId, int id, int quantity) {
+	public Inventory(int inventoryId, int productId, int quantity) {
 		super();
 		this.inventoryId = inventoryId;
-		this.id = id;
+		this.productId = productId;
 		this.quantity = quantity;
 	}
 
