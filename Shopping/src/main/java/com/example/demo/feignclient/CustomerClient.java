@@ -14,7 +14,7 @@ public interface CustomerClient {
 	@PostMapping("/customer")
 	public Customer addCustomer(@RequestBody Customer customer);
 	
-	@GetMapping("/customer/{id}")
-	public Customer searchCustomer(@PathVariable("id") int customerId);
+	@GetMapping("/customer/{customerId}")
+	public Customer searchCustomer(@PathVariable int customerId);
 	
 }

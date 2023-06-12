@@ -1,4 +1,4 @@
-package com.example.demo.service.payload;
+package com.example.demo.payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,13 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdInvDto {
+public class ProductDTO {
 
-	int inventoryId;
-	int productId;
-	int quantity;
-	int cartId;
-	
+	private int productId;
 	private String productName;
+	private String productDescription;
 	private double productPrice;
+	private int productQuantity;
 }

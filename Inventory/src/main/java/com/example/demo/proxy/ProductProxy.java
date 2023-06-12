@@ -9,7 +9,7 @@ import com.example.demo.modal.Product;
 @FeignClient(name="PRODUCT-SERVICE")
 public interface ProductProxy {
 	
-	@GetMapping("/products/{id}")
-	public Product searchProduct(@PathVariable("id") int productId);
+	@GetMapping("/products/{productId}")
+	public Product searchProduct(@PathVariable int productId);
 
 }

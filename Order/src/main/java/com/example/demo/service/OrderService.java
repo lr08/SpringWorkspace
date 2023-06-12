@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entity.LineItems;
 import com.example.demo.entity.Orders;
 import com.example.demo.exception.OrderNotFoundException;
 import com.example.demo.payload.OrderDTO;
@@ -45,6 +46,24 @@ public class OrderService{
 		orders.getItems().forEach(items->irepo.save(items));
 		Orders newOrder = orepo.save(orders);
 		return mapToDTO(newOrder);
+	}
+	
+	//PUT
+	public OrderDTO addItems(String orderId,OrderDTO orderDto) {
+		Orders order1=orepo.findById(orderId).orElseThrow(()->new OrderNotFoundException("Order not found"));
+		List<LineItems> existingLineItems=order1.getItems();
+		existingLineItems.addAll(orderDto.getItems());
+		order1.getItems().stream().forEach(items->irepo.save(items));
+		return mapToDTO(orepo.save(order1));
+	}
+	
+	//PUT
+	public OrderDTO updateOrder(String orderId,OrderDTO orderDto) {
+		Orders order1 = orepo.findById(orderId).orElseThrow(()->new OrderNotFoundException("Order not found"));
+		order1.setCustomerId(orderDto.getCustomerId());
+		order1.setItems(orderDto.getItems());
+		order1.getItems().stream().forEach(items->irepo.save(items));
+		return mapToDTO(orepo.save(order1));
 	}
 	
 	//GET

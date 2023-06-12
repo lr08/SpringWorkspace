@@ -36,18 +36,18 @@ public class OrderController {
 
 	@PostMapping
 	public ResponseEntity<OrderDTO> addOrder(@RequestBody OrderDTO orderDto) {
-		return new ResponseEntity(service.addOrder(orderDto), HttpStatus.CREATED);
+		return new ResponseEntity<>(service.addOrder(orderDto), HttpStatus.CREATED);
 	}
 
-//	@PutMapping("/items/{orderId)")
-//	public ResponseEntity<OrderDTO> addItem(@PathVariable String orderId, @RequestBody OrderDTO orderDto){ 
-//		return new ResponseEntity(service.addItems (orderId, orderDto), HttpStatus.OK);
-//	}
+	@PutMapping("/items/{orderId}")
+	public ResponseEntity<OrderDTO> addItem(@PathVariable String orderId, @RequestBody OrderDTO orderDto){ 
+		return new ResponseEntity<>(service.addItems (orderId, orderDto), HttpStatus.OK);
+	}
 
-//	@PutMapping("/(orderId)")
-//	public ResponseEntity<OrderDTO> updateOrder(@PathVariable String orderId, @RequestBody OrderDTO order){
-//		return new ResponseEntity (service.updateOrder(orderId, orderDto), HttpStatus.OK);
-//	}
+	@PutMapping("/{orderId}")
+	public ResponseEntity<OrderDTO> updateOrder(@PathVariable String orderId, @RequestBody OrderDTO orderDto){
+		return new ResponseEntity<>(service.updateOrder(orderId, orderDto), HttpStatus.OK);
+	}
 	
 	
 	@GetMapping("/all")
@@ -55,14 +55,15 @@ public class OrderController {
 		return service.getAll();
 	}
 		
-	@GetMapping("/(orderId}")
-	public Orders getOrders (@PathVariable String orderId) { 
-		return service.getOrders (orderId);
+	@GetMapping("/{orderId}")
+	public Orders getOrders(@PathVariable String orderId) { 
+		return service.getOrders(orderId);
 	}
 	
-	@DeleteMapping("/(orderId)")
+	@DeleteMapping("/{orderId}")
 	public ResponseEntity<String> deleteorder(@PathVariable String orderId) {
-		service.deleteOrder (orderId); return new ResponseEntity("order canceled", HttpStatus.OK);
+		service.deleteOrder(orderId);
+		return new ResponseEntity<>("order canceled", HttpStatus.OK);
 	}
 	
 

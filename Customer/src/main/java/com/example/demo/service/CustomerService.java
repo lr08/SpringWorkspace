@@ -42,7 +42,7 @@ public class CustomerService {
 	}
 	
 	public CustomerDTO updateCustomer(Integer customerId,CustomerDTO customerDto) {
-		Customer customer  = repo.findById(customerId).orElseThrow(()->new CustomerNotFoundException("Customer not found"));
+		Customer customer = repo.findById(customerId).orElseThrow(()->new CustomerNotFoundException("Customer not found"));
 		customer.setCustomerName(customerDto.getCustomerName());
 		customer.setCustomerEmail(customerDto.getCustomerEmail());
 		customer.setCustomerBillingAddress(customerDto.getCustomerBillingAddress());
@@ -57,7 +57,6 @@ public class CustomerService {
 	public List<CustomerDTO> findAllCustomers(){
 		List<Customer> customers = repo.findAll();
 		return customers.stream().map(customer->mapToDTO(customer)).collect(Collectors.toList());
-		
 	}
 	
 	public void deleteCustomer(int customerId) {
